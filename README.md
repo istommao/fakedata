@@ -12,6 +12,6 @@ uvicorn main:app --reload
 
 ## TODO
 
-- [] create insert sql
-- [] create data table
-- [] custom field data
+- [ ] create insert sql
+- [ ] create data table
+- [ ] custom field data
