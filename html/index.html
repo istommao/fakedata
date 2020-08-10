@@ -38,8 +38,15 @@
                 <div class="layui-form-mid layui-word-aux">行记录</div>
             </div>
             <div class="layui-form-item">
+                <label class="layui-form-label">生成类型</label>
                 <div class="layui-input-block">
-                    <button class="layui-btn" lay-submit lay-filter="dataForm">生成数据</button>
+                    <input type="radio" name="datatype" value="datatable" title="数据表格" checked>
+                    <input type="radio" name="datatype" value="SQL" title="SQL语句">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit lay-filter="dataForm">生成</button>
                 </div>
             </div>
         </form>

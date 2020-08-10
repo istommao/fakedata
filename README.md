@@ -13,9 +13,9 @@ uvicorn main:app --reload
 ## TODO
 
 - [ ] create insert sql
-- [ ] create data table
-- [ ] custom field data
+- [x] create data table
+- [x] custom field data
 
 ## screenshot
 
-<img src="resource/screen.png" width=800 /> ![](resource/screen.png)
+![](resource/screen.png)
