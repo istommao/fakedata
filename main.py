@@ -21,6 +21,8 @@ async def index_page(request: Request):
 async def create_data_api(request: Request):
     from src.handlers import do_create_fake_data
 
+    count = int(request.query_params.get('count', 10))
+
     field_list = [
         {"name": "id"},
         {"name": "name"},
@@ -29,6 +31,6 @@ async def create_data_api(request: Request):
         {"name": "email", "domain": "abstack.com"},
         {"name": "price", 'digits': 2, 'decimal': 1}
     ]
-    result = await do_create_fake_data(field_list, count=100)
+    result = await do_create_fake_data(field_list, count=count)
 
-    return result
+    return {'data': result, 'count': count, 'code': 0}
