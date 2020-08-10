@@ -18,4 +18,4 @@ uvicorn main:app --reload
 
 ## screenshot
 
-![demo](https://static01.imgkr.com/temp/71301adfa7b84fbf8586024a737d1b68.png)
+<img src="resource/screen.png" width=800 /> ![](resource/screen.png)
