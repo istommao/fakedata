@@ -8,7 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="https://www.layuicdn.com/layui/css/layui.css" media="all">
-    <link rel="stylesheet" type="text/css" href="/static/layui-theme.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/layui-theme.css" />
+    <link rel="stylesheet" href="/static/css/prism.css">
     <style>
         .main {
         width: 80%;
@@ -31,6 +32,14 @@
                 </div>
             </div>
             <div class="layui-form-item">
+                <label class="layui-form-label">生成类型</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="datatype" value="datatable" title="数据表格" checked>
+                    <input type="radio" name="datatype" value="json" title="JSON数据">
+                    <input type="radio" name="datatype" value="sql" title="SQL语句">
+                </div>
+            </div>
+            <div class="layui-form-item">
                 <label class="layui-form-label">数量</label>
                 <div class="layui-input-inline">
                     <input type="text" name="count" required lay-verify="required" placeholder="请输入生成的数量" autocomplete="off" class="layui-input">
@@ -38,21 +47,20 @@
                 <div class="layui-form-mid layui-word-aux">行记录</div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">生成类型</label>
-                <div class="layui-input-block">
-                    <input type="radio" name="datatype" value="datatable" title="数据表格" checked>
-                    <input type="radio" name="datatype" value="SQL" title="SQL语句">
-                </div>
-            </div>
-            <div class="layui-form-item">
                 <div class="layui-input-block">
                     <button class="layui-btn" lay-submit lay-filter="dataForm">生成</button>
                 </div>
             </div>
+            <pre class="language-json" id="jsonData" style="max-height: 500px">
+            </pre>
+             <pre class="language-sql" id="sqlData" style="max-height: 500px">
+            </pre>
         </form>
         <table class="layui-hide" id="datatable" lay-filter="datatable"></table>
     </div>
     <script src="https://www.layuicdn.com/layui/layui.js" charset="utf-8"></script>
+    <script src="/static/js/clipboard.min.js"></script>
+    <script src="/static/js/prism.js"></script>
     <script>
     //Demo
     var baseURL = document.location.origin;
@@ -63,11 +71,27 @@
             table = layui.table,
             laydate = layui.laydate;
 
-        // //日期
-        // laydate.render({
-        //     elem: '#date'
-        // });
-        function createDataList(field) {
+        function createDataJSONList(field) {
+            $.ajax({
+                url: baseURL + '/api/jsondata/demo/?count=' + field.count,
+                type: 'get',
+                success: function(resp) {
+                    $('#jsonData').html(JSON.stringify(resp.data, null, 4));
+                }
+            });
+        }
+
+        function createDataSQL(field) {
+            $.ajax({
+                url: baseURL + '/api/sqldata/demo/',
+                type: 'get',
+                success: function(resp) {
+                    $('#sqlData').html(resp.data);
+                }
+            });
+        }
+
+        function createDataTableList(field) {
             fieldList = [
                 { 'field': 'id', 'title': 'ID' },
                 { 'field': 'name', 'title': '名称' },
@@ -90,10 +114,14 @@
             });
         }
 
-        //监听提交
         form.on('submit(dataForm)', function(data) {
-            // layer.msg(JSON.stringify(data.field));
-            createDataList(data.field)
+            if (data.field.datatype == 'datatable') {
+                createDataTableList(data.field)
+            } else if (data.field.datatype == 'json') {
+                createDataJSONList(data.field)
+            } else {
+                createDataSQL(data.field)
+            }
             return false;
         });
 

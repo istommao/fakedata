@@ -12,10 +12,11 @@ uvicorn main:app --reload
 
 ## TODO
 
-- [ ] create insert sql
+- [x] create json data
 - [x] create data table
 - [x] custom field data
+- [x] create insert sql
 
 ## screenshot
 
-![](resource/screen.png)
+![](resource/screen2.png)
