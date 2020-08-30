@@ -3,23 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Fake Data</title>
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="https://www.layuicdn.com/layui/css/layui.css" media="all">
-    <link rel="stylesheet" type="text/css" href="/static/css/layui-theme.css" />
-    <link rel="stylesheet" href="/static/css/prism.css">
+    <title>收藏家</title>
+    <link rel="shortcut icon" href="/static/imgs/cat1.png" />
     <style>
-        .main {
-        width: 100%;
-        padding: 15px 10px;
-        background-color: #fff;
-        box-shadow: 0 1px 5px rgba(180, 195, 255, .3);
-        -webkit-transition: all .2s ease;
-        transition: all .2s ease;
-        border-radius: 2px;
-    }
         body {
         background: #fbfbfb;
     }
@@ -27,8 +13,8 @@
     * {
         padding: 0;
         margin: 0;
-/*        box-sizing: border-box;
-*/        font-family: -apple-system, Source Sans Pro, BlinkMacSystemFont, PingFang SC, Helvetica, Tahoma, Arial, Hiragino Sans GB, Microsoft YaHei, "\5FAE\8F6F\96C5\9ED1", sans-serif;
+        box-sizing: border-box;
+        font-family: -apple-system, Source Sans Pro, BlinkMacSystemFont, PingFang SC, Helvetica, Tahoma, Arial, Hiragino Sans GB, Microsoft YaHei, "\5FAE\8F6F\96C5\9ED1", sans-serif;
         font-size: 14px;
         font-weight: 400;
         color: #303659;
@@ -66,7 +52,7 @@
     .wrapper .menu_front .container {
         width: 1200px;
         max-width: 100%;
-        margin: 0 auto;
+        margin: auto;
         height: 100%;
         position: relative;
     }
@@ -116,7 +102,7 @@
     }
 
     .page .container {
-        width: 95%;
+        width: 980px;
         margin: 0 auto;
         margin-top: 80px;
     }
@@ -275,116 +261,49 @@
         </div>
         <div class="page">
             <div class="container">
-                <div class="main">
-                    <form class="layui-form" action="">
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">选择字段</label>
-                            <div class="layui-input-block">
-                                <input type="checkbox" name="id" title="ID">
-                                <input type="checkbox" name="name" title="名称">
-                                <input type="checkbox" name="email" title="邮箱">
-                                <input type="checkbox" name="price" title="余额">
-                                <input type="checkbox" name="cellphone" title="手机号">
-                            </div>
+                <!-- <h1>收藏家</h1>
+                <p class="description">共收录 16 个分类， 119 个站点</p> -->
+                <div class="sectors">
+                    <div class="sector">
+                        <h2>综合</h2>
+                        <div class="links">
+                            <a href="/onepage/detail/?category=图库资源" class="link"><img src="https://c.codingcat.top/upload/1594473351/c4b7fc22.jpg" alt="">
+                                <div class="info">
+                                    <h3>图库资源</h3>
+                                    <p>图库资源</p>
+                                </div>
+                            </a>
+                            <a href="/onepage/detail/?category=短网址" class="link"><img src="https://c.codingcat.top/upload/1594471935/de13d1f7.jpg" alt="">
+                                <div class="info">
+                                    <h3>短网址</h3>
+                                    <p>短网址</p>
+                                </div>
+                            </a>
+                            <a href="/onepage/detail/?category=文件图床" class="link"><img src="https://c.codingcat.top/upload/1594472678/2fedd9bc.jpg" alt="">
+                                <div class="info">
+                                    <h3>文件图床</h3>
+                                    <p>文件图床</p>
+                                </div>
+                            </a>
                         </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">生成类型</label>
-                            <div class="layui-input-block">
-                                <input type="radio" name="datatype" value="datatable" title="数据表格" checked>
-                                <input type="radio" name="datatype" value="json" title="JSON数据">
-                                <input type="radio" name="datatype" value="sql" title="SQL语句">
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">数量</label>
-                            <div class="layui-input-inline">
-                                <input type="text" name="count" required lay-verify="required" placeholder="请输入生成的数量" autocomplete="off" class="layui-input">
-                            </div>
-                            <div class="layui-form-mid layui-word-aux">行记录</div>
-                        </div>
-                        <div class="layui-form-item">
-                            <div class="layui-input-block">
-                                <button class="layui-btn" lay-submit lay-filter="dataForm">生成</button>
-                            </div>
-                        </div>
-                        <pre class="language-json" id="jsonData" style="max-height: 500px">
-            </pre>
-                        <pre class="language-sql" id="sqlData" style="max-height: 500px">
-            </pre>
-                    </form>
-                    <table class="layui-hide" id="datatable" lay-filter="datatable"></table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <div style="display: none;">
+<!--         <script type="text/javascript" src="https://s4.cnzz.com/z_stat.php?id=1279042607&web_id=1279042607"></script> -->
+    </div>
     <script src="https://www.layuicdn.com/layui/layui.js" charset="utf-8"></script>
-    <script src="/static/js/clipboard.min.js"></script>
-    <script src="/static/js/prism.js"></script>
     <script>
-    //Demo
-    var baseURL = document.location.origin;
+    layui.use(['form', 'layedit', 'laydate', 'upload'], function() {
+        var form = layui.form,
+            layer = layui.layer,
+            layedit = layui.layedit,
+            upload = layui.upload,
+            $ = layui.jquery;
 
-    layui.use(['form', 'laydate', 'table'], function() {
-        var $ = layui.jquery,
-            form = layui.form,
-            table = layui.table,
-            laydate = layui.laydate;
-
-        function createDataJSONList(field) {
-            $.ajax({
-                url: baseURL + '/api/jsondata/demo/?count=' + field.count,
-                type: 'get',
-                success: function(resp) {
-                    $('#jsonData').html(JSON.stringify(resp.data, null, 4));
-                }
-            });
-        }
-
-        function createDataSQL(field) {
-            $.ajax({
-                url: baseURL + '/api/sqldata/demo/',
-                type: 'get',
-                success: function(resp) {
-                    $('#sqlData').html(resp.data);
-                }
-            });
-        }
-
-        function createDataTableList(field) {
-            fieldList = [
-                { 'field': 'id', 'title': 'ID' },
-                { 'field': 'name', 'title': '名称' },
-                { 'field': 'datetime', 'title': '日期' },
-                { 'field': 'cellphone', 'title': '手机号' },
-                { 'field': 'email', 'title': '邮箱' },
-                { 'field': 'price', 'title': '余额' }
-            ]
-
-            table.render({
-                elem: '#datatable',
-                limit: 20,
-                url: '/api/jsondata/demo/?count=' + field.count,
-                defaultToolbar: ['filter', 'exports'],
-                title: '数据表',
-                cols: [
-                    fieldList
-                ],
-                page: true
-            });
-        }
-
-        form.on('submit(dataForm)', function(data) {
-            if (data.field.datatype == 'datatable') {
-                createDataTableList(data.field)
-            } else if (data.field.datatype == 'json') {
-                createDataJSONList(data.field)
-            } else {
-                createDataSQL(data.field)
-            }
-            return false;
-        });
-
-
+        var baseURL = document.location.origin;
     });
     </script>
 </body>

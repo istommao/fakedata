@@ -16,6 +16,7 @@ uvicorn main:app --reload
 - [x] create data table
 - [x] custom field data
 - [x] create insert sql
+- [ ] Docker
 
 ## screenshot
 
