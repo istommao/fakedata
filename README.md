@@ -20,4 +20,12 @@ uvicorn main:app --reload
 
 ## screenshot
 
-![](resource/screen2.png)
+`datatable`
+
+![](resource/datatable.png)
+
+`jsondata`
+![](resource/jsondata.png)
+
+`sqldata`
+![](resource/sqldata.png)
