@@ -47,6 +47,7 @@ async def create_data_api(request: Request):
         {"name": "name"},
         {"name": "datetime", "format": "YYYY-MM-DD HH:MM:SS"},
         {"name": "cellphone"},
+        {"name": "timestamp"},
         {"name": "email", "domain": "abstack.com"},
         {"name": "price", 'digits': 2, 'decimal': 1}
     ]

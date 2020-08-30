@@ -1,3 +1,4 @@
+import time
 import datetime
 
 from faker import Faker
@@ -73,3 +74,9 @@ def generate_number(digits=1, decimal=0, count=1, **kwargs):
         return float(result)
     else:
         return int(result)
+
+
+def generate_timestamp(**kwargs):
+    now = time.time()
+
+    return int(now)
