@@ -13,7 +13,7 @@
     <style>
         .main {
         width: 100%;
-        padding: 15px 10px;
+        padding: 30px 10px 15px 10px;
         background-color: #fff;
         box-shadow: 0 1px 5px rgba(180, 195, 255, .3);
         -webkit-transition: all .2s ease;
@@ -116,7 +116,7 @@
     }
 
     .page .container {
-        width: 95%;
+        width: 90%;
         margin: 0 auto;
         margin-top: 80px;
     }
@@ -307,10 +307,8 @@
                                 <button class="layui-btn" lay-submit lay-filter="dataForm">生成</button>
                             </div>
                         </div>
-                        <pre class="language-json" id="jsonData" style="max-height: 500px">
-            </pre>
-                        <pre class="language-sql" id="sqlData" style="max-height: 500px">
-            </pre>
+                        <pre class="language-json" id="jsonData" style="display:none;max-height: 500px"></pre>
+                        <pre class="language-sql" id="sqlData" style="display:none;max-height: 500px"></pre>
                     </form>
                     <table class="layui-hide" id="datatable" lay-filter="datatable"></table>
                 </div>
@@ -336,6 +334,7 @@
                 type: 'get',
                 success: function(resp) {
                     $('#jsonData').html(JSON.stringify(resp.data, null, 4));
+                    $('#jsonData').show();
                 }
             });
         }
@@ -346,6 +345,7 @@
                 type: 'get',
                 success: function(resp) {
                     $('#sqlData').html(resp.data);
+                    $('#sqlData').show();
                 }
             });
         }
