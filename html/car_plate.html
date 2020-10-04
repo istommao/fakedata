@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <title>收藏家</title>
+    <link rel="shortcut icon" href="/static/imgs/cat1.png" />
+    <style>
+    body {
+        background: #fbfbfb;
+    }
+
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: -apple-system, Source Sans Pro, BlinkMacSystemFont, PingFang SC, Helvetica, Tahoma, Arial, Hiragino Sans GB, Microsoft YaHei, "\5FAE\8F6F\96C5\9ED1", sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        /*color: #303659;*/
+        -webkit-font-smoothing: antialiased;
+    }
+
+    .wrapper {
+        width: 100%;
+        min-width: 1200px;
+        min-height: 100vh;
+        position: relative;
+    }
+
+    .wrapper .menu {
+        height: 70px;
+        width: 100%;
+        margin: 0 auto;
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        z-index: 199;
+        box-shadow: 0 1px 2px rgba(180, 195, 255, .3);
+    }
+
+    .wrapper .menu_front {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: #fff;
+    }
+
+    .wrapper .menu_front .container {
+        width: 1200px;
+        max-width: 100%;
+        margin: auto;
+        height: 100%;
+        position: relative;
+    }
+
+    .flex-between {
+        width: 100%;
+        -webkit-box-pack: justify;
+        justify-content: space-between;
+    }
+
+    .flex-between,
+    .flex-center {
+        display: -webkit-box;
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+    }
+
+    .wrapper .menu_front .left {
+        width: 8%;
+    }
+
+    #LogoLink {
+        margin-left: 50px;
+    }
+
+    .wrapper .menu_front .right {
+        width: 24%;
+    }
+
+    .wrapper .menu_front .middle {
+        height: 100%;
+        -webkit-box-flex: 1;
+        flex: 1;
+        position: relative;
+        display: -webkit-box;
+        display: flex;
+        /*-webkit-box-align: center;
+        align-items: center;*/
+
+        -webkit-box-pack: justify;
+        justify-content: space-between;
+    }
+
+    .page {
+        background: #fbfbfb;
+        padding: 20px 0 150px;
+    }
+
+    .page .container {
+        width: 980px;
+        margin: 0 auto;
+        margin-top: 80px;
+    }
+
+    .page .container h1 {
+        font-size: 30px;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .page .container .description {
+        text-align: center;
+    }
+
+    .page .container .sector {
+        /*margin: 20px 0;*/
+    }
+
+    .page .container h2 {
+        font-size: 16px;
+        text-align: left;
+        margin: 10px 0 20px;
+        /*padding-top: 20px;*/
+        font-weight: 700;
+    }
+
+    .page .container .links {
+        display: -webkit-box;
+        display: flex;
+        flex-wrap: wrap;
+        -webkit-box-pack: justify;
+        justify-content: space-between;
+    }
+
+    .page .container .links .link {
+        width: 310px;
+        background: #fff;
+        display: -webkit-box;
+        display: flex;
+        box-shadow: 0 1px 5px rgba(180, 195, 255, .3);
+        -webkit-transition: all .2s ease;
+        transition: all .2s ease;
+        -webkit-box-align: center;
+        align-items: center;
+        padding: 15px 10px;
+        margin-bottom: 20px;
+        border-radius: 2px;
+        cursor: pointer;
+        border: 1px solid transparent;
+    }
+
+    .page .container .links .link img {
+        width: 30px;
+        height: 30px;
+        -o-object-fit: contain;
+        object-fit: contain;
+        margin-right: 10px;
+        -webkit-transition: all .2s ease;
+        transition: all .2s ease;
+    }
+
+    .page .container .links .link .info {
+        width: 230px;
+    }
+
+    .page .container .links a:hover {
+        border: 1px solid #20A0FF;
+    }
+
+    .page .container h3 {
+        font-size: 14px;
+    }
+
+    .page .container .links .link .info p {
+        font-size: 12px;
+        color: #888ea2;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        width: 100%;
+        display: block;
+        text-align: left;
+        line-height: 1.8;
+    }
+
+    a {
+        cursor: pointer;
+        outline: none;
+        display: -webkit-box;
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        justify-content: center;
+    }
+
+    .page .container .links:after {
+        content: "";
+        width: 310px;
+        display: block;
+        height: 0;
+    }
+
+    a,
+    a:hover,
+    a:visited {
+        text-decoration: none;
+    }
+
+    .activeBox {
+        border: 1px solid #20A0FF;
+    }
+
+    .wrapper .menu_front .flex-center a {
+        font-size: 16px;
+    }
+
+    .wrapper .menu_front .flex-center img {
+        height: 46px;
+    }
+
+    .wrapper .menu_front .middle .nav-item .item {
+        color: #303659;
+        cursor: pointer;
+        font-size: 16px;
+        line-height: 22px;
+        margin-right: 4px;
+        width: 80px;
+    }
+
+    .wrapper .menu_front .middle .nav-item a:hover {
+        color: #20A0FF;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="menu">
+            <div class="menu_front">
+                <div class="container flex-between">
+                    <div class="flex-center left">
+                        <a id="LogoLink" href="/" title="收藏家" class="nuxt-link-active">
+                            <img id="logoLeft" src="/static/imgs/logo.png" alt="fakedata" data-v-74172461=""></a>
+                    </div>
+                    <div class="middle">
+                        <div class="nav-item flex-center">
+                            <div class="nav-hover-wrapper flex-center">
+                                <a href="/" class="item nuxt-link-exact-active nuxt-link-active">Home</a>
+                                <a href="/index/" class="item nuxt-link-exact-active nuxt-link-active">Form</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="right">
+                    <a href="https://github.com/istommao/fakedata" target="_blank" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+                            <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+                            <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+                            <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+                        </svg></a>
+                    <style>
+                    .github-corner:hover .octo-arm {
+                        animation: octocat-wave 560ms ease-in-out
+                    }
+
+                    @keyframes octocat-wave {
+
+                        0%,
+                        100% {
+                            transform: rotate(0)
+                        }
+
+                        20%,
+                        60% {
+                            transform: rotate(-25deg)
+                        }
+
+                        40%,
+                        80% {
+                            transform: rotate(10deg)
+                        }
+                    }
+
+                    @media (max-width:500px) {
+                        .github-corner:hover .octo-arm {
+                            animation: none
+                        }
+
+                        .github-corner .octo-arm {
+                            animation: octocat-wave 560ms ease-in-out
+                        }
+                    }
+                    </style>
+                </div>
+            </div>
+        </div>
+        <div class="page">
+            <div class="container">
+                <!-- <h1>收藏家</h1>
+                <p class="description">共收录 16 个分类， 119 个站点</p> -->
+                <div class="sectors">
+                    <div class="sector">
+                         <h2>浙江</h2>
+                        <div class="links">
+                            <a href="javascript:();" class="link"><img src="/static/imgs/car.png" alt="">
+                                <div class="info">
+                                    <h3>浙江A</h3>
+                                    <p>杭州</p>
+                                </div>
+                            </a>
+                            <a href="javascript:();" class="link"><img src="/static/imgs/car.png" alt="">
+                                <div class="info">
+                                    <h3>浙江B</h3>
+                                    <p>宁波</p>
+                                </div>
+                            </a>
+                            <a href="javascript:();" class="link"><img src="/static/imgs/car.png" alt="">
+                                <div class="info">
+                                    <h3>浙江C</h3>
+                                    <p>温州</p>
+                                </div>
+                            </a>
+                            <a href="javascript:();" class="link"><img src="/static/imgs/car.png" alt="">
+                                <div class="info">
+                                    <h3>浙江D</h3>
+                                    <p>宁波</p>
+                                </div>
+                            </a>
+                            <a href="javascript:();" class="link"><img src="/static/imgs/car.png" alt="">
+                                <div class="info">
+                                    <h3>浙江E</h3>
+                                    <p>宁波</p>
+                                </div>
+                            </a>
+                            <a href="javascript:();" class="link"><img src="/static/imgs/car.png" alt="">
+                                <div class="info">
+                                    <h3>浙江F</h3>
+                                    <p>宁波</p>
+                                </div>
+                            </a>
+                            <a href="javascript:();" class="link"><img src="/static/imgs/car.png" alt="">
+                                <div class="info">
+                                    <h3>浙江B</h3>
+                                    <p>宁波</p>
+                                </div>
+                            </a>
+                            <a href="javascript:();" class="link"><img src="/static/imgs/car.png" alt="">
+                                <div class="info">
+                                    <h3>浙江B</h3>
+                                    <p>宁波</p>
+                                </div>
+                            </a>
+                            <a href="javascript:();" class="link"><img src="/static/imgs/car.png" alt="">
+                                <div class="info">
+                                    <h3>浙江B</h3>
+                                    <p>宁波</p>
+                                </div>
+                            </a>
+                            <a href="javascript:();" class="link"><img src="/static/imgs/car.png" alt="">
+                                <div class="info">
+                                    <h3>浙江B</h3>
+                                    <p>宁波</p>
+                                </div>
+                            </a>
+                            <a href="javascript:();" class="link"><img src="/static/imgs/car.png" alt="">
+                                <div class="info">
+                                    <h3>浙江B</h3>
+                                    <p>宁波</p>
+                                </div>
+                            </a>
+                            <a href="javascript:();" class="link"><img src="/static/imgs/car.png" alt="">
+                                <div class="info">
+                                    <h3>浙江B</h3>
+                                    <p>宁波</p>
+                                </div>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="display: none;">
+        <!--         <script type="text/javascript" src="https://s4.cnzz.com/z_stat.php?id=1279042607&web_id=1279042607"></script> -->
+    </div>
+    <script src="https://www.layuicdn.com/layui/layui.js" charset="utf-8"></script>
+    <script>
+    layui.use(['form', 'layedit', 'laydate', 'upload'], function() {
+        var form = layui.form,
+            layer = layui.layer,
+            layedit = layui.layedit,
+            upload = layui.upload,
+            $ = layui.jquery;
+
+        var baseURL = document.location.origin;
+    });
+    </script>
+</body>
+
+</html>

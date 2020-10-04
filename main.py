@@ -17,6 +17,11 @@ async def index_page(request: Request):
     return templates.TemplateResponse('base.html', {'request': request})
 
 
+@app.get('/car')
+async def index_page(request: Request):
+    return templates.TemplateResponse('car_plate.html', {'request': request})
+
+
 @app.get('/index')
 async def index_page(request: Request):
     return templates.TemplateResponse('index.html', {'request': request})
@@ -54,4 +59,3 @@ async def create_data_api(request: Request):
     result = await do_create_fake_data(field_list, count=count)
 
     return {'data': result, 'count': count, 'code': 0}
-

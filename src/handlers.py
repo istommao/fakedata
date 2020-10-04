@@ -29,7 +29,6 @@ async def do_create_fake_data(field_list, count=1):
     return datalist
 
 
-
 async def create_data_sql(field_list, value_list):
     """Create sql string.
 
